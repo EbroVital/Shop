@@ -25,7 +25,6 @@ class User extends Authenticatable
     ];
 
     // un user a plusieurs commandes
-
     public function commandes(){
         return $this->hasMany(Commande::class);
     }
