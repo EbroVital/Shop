@@ -10,21 +10,33 @@ class HomeController extends Controller
 {
     public function index(Request $request){
 
-        // recuperer toutes categories
+        // recuperer les categories
         $categories = Category::all();
-        // id de la categorie
+
+        // recuperer les parametres de recherche
         $categorieId = $request->get('categorie');
+        $search = $request->get('search');
+
         // query builder
         $query = Product::with('categorie');
 
+        // recuperer les categories s'il y en a
         if($categorieId) {
             $query->where('categorie_id', $categorieId);
         }
 
-        // recuperer tous les produits
+        // filtre par saisie
+        if($search){
+            $query->where(function ($q) use ($search) {
+                $q->where('nom', 'LIKE', "%{$search}%")->orWhere('description', 'LIKE', "%{$search}%");
+            });
+        }
+
+        // recuperer les produits
         $produits = $query->get();
 
-        return view('home', compact('produits', 'categories', 'categorieId'));
+        return view('home', compact('produits', 'categories', 'categorieId', 'search'));
+
     }
 
 }

@@ -136,37 +136,106 @@
             {{-- LISTE DES PRODUITS --}}
             <div class="container py-5">
 
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h2 class="mb-4 fw-bold">
-                        <i class="fas fa-box-open"></i> Nos Produits
-                        @if($categorieId)
-                            <span class="badge bg-primary">
-                                {{ $categories->find($categorieId)->libelle }}
+                {{-- SECTION RECHERCHE ET FILTRE --}}
+                <div class="mb-4">
+
+                    <div class="row g-3 align-items-end">
+
+                        {{-- BARRE DE RECHERCHE --}}
+                        <div class="col-md-6">
+                            <form method="GET" action="{{ route('home') }}">
+                                {{-- Conserver le filtre catégorie si actif --}}
+                                @if($categorieId)
+                                    <input type="hidden" name="categorie" value="{{ $categorieId }}">
+                                @endif
+
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-search"></i>
+                                    </span>
+                                    <input type="text"
+                                        name="search"
+                                        class="form-control"
+                                        placeholder="Rechercher un produit..."
+                                        value="{{ $search }}">
+                                    <button type="submit" class="btn btn-primary">
+                                        Rechercher
+                                    </button>
+
+                                    {{-- Bouton Clear si recherche active --}}
+                                    @if($search)
+                                        <a href="{{ route('home') }}{{ $categorieId ? '?categorie='.$categorieId : '' }}"
+                                        class="btn btn-outline-secondary">
+                                            <i class="fas fa-times"></i>
+                                        </a>
+                                    @endif
+                                </div>
+                            </form>
+                        </div>
+
+                        {{-- FILTRE CATÉGORIE --}}
+                        <div class="col-md-6">
+                            <form method="GET" action="{{ route('home') }}" class="d-flex gap-2">
+                                {{-- Conserver la recherche si active --}}
+                                @if($search)
+                                    <input type="hidden" name="search" value="{{ $search }}">
+                                @endif
+
+                                <select name="categorie" class="form-select" onchange="this.form.submit()">
+                                    <option value="">📂 Toutes les catégories</option>
+                                    @foreach($categories as $cat)
+                                        <option value="{{ $cat->id }}" {{ $categorieId == $cat->id ? 'selected' : '' }}>
+                                            {{ $cat->libelle }} 
+                                        </option>
+                                    @endforeach
+                                </select>
+
+                                {{-- Bouton Reset si filtre actif --}}
+                                @if($categorieId)
+                                    <a href="{{ route('home') }}{{ $search ? '?search='.$search : '' }}"
+                                    class="btn btn-outline-secondary">
+                                        <i class="fas fa-times"></i>
+                                    </a>
+                                @endif
+                            </form>
+                        </div>
+
+                    </div>
+
+                    {{-- AFFICHAGE DES FILTRES ACTIFS --}}
+                    @if($search || $categorieId)
+                        <div class="mt-3">
+                            <span class="text-muted">
+                                <i class="fas fa-filter"></i> Filtres actifs :
                             </span>
-                        @endif
-                    </h2>
 
-                    {{-- FILTRE PAR CATÉGORIE --}}
-                    <form method="GET" action="{{ route('home') }}" class="d-flex gap-2">
-                        <select name="categorie" class="form-select" style="width: 250px;" onchange="this.form.submit()">
-                            <option value="">📂 Toutes les catégories</option>
-                            @foreach($categories as $cat)
-                                <option value="{{ $cat->id }}" {{ $categorieId == $cat->id ? 'selected' : '' }}>
-                                    {{ $cat->libelle }}
-                                </option>
-                            @endforeach
-                        </select>
+                            @if($search)
+                                <span class="badge bg-info">
+                                    Recherche : "{{ $search }}"
+                                </span>
+                            @endif
 
-                        {{-- Bouton Reset (visible que si filtre actif) --}}
-                        @if($categorieId)
-                            <a href="{{ route('home') }}" class="btn btn-outline-danger">
-                                <i class="fas fa-times"></i> Réinitialiser
+                            @if($categorieId)
+                                <span class="badge bg-primary">
+                                    Catégorie : {{ $categories->find($categorieId)->libelle }}
+                                </span>
+                            @endif
+
+                            <a href="{{ route('home') }}" class="badge bg-secondary text-decoration-none">
+                                <i class="fas fa-times"></i> Tout réinitialiser
                             </a>
-                        @endif
-                    </form>
+                        </div>
+                    @endif
 
                 </div>
 
+                {{-- TITRE AVEC COMPTEUR --}}
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="mb-0 fw-bold">
+                        <i class="fas fa-box-open"></i> Nos Produits
+                        <span class="badge bg-secondary">{{ $produits->count() }}</span>
+                    </h2>
+                </div>
 
                 @if($produits->count() > 0)
                     <div class="row g-4">
