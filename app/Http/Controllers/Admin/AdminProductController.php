@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
 
 use App\Http\Requests\ProductRequest;
 use App\Models\Category;
@@ -86,7 +87,7 @@ class AdminProductController extends Controller
     {
 
         $produit->delete();
-        
+
         return redirect()->route('produits.index')->with('message', 'Le produit a été supprimé');
     }
 }

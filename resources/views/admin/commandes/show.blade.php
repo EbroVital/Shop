@@ -1,0 +1,142 @@
+@extends('layouts.template')
+
+@section('title', 'Modifier une commande')
+@section('titre', 'Les Commandes en cours')
+
+@section('content')
+
+
+    <div class="container-fluid">
+
+        {{-- HEADER --}}
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>
+                <i class="fas fa-shopping-bag"></i> Commande #{{ $commande->id }}
+            </h2>
+        </div>
+
+        <div class="row">
+
+            {{-- INFOS COMMANDE --}}
+            <div class="col-md-8">
+
+                {{-- PRODUITS --}}
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="fas fa-box"></i> Produits commandés</h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Produit</th>
+                                    <th>Prix unitaire</th>
+                                    <th>Quantité</th>
+                                    <th>Sous-total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($commande->products as $produit)
+                                    <tr>
+                                        <td>{{ $produit->nom }}</td>
+                                        <td>{{ number_format($produit->pivot->prix_unitaire, 0, ',', ' ') }} FCFA</td>
+                                        <td>{{ $produit->pivot->quantite }}</td>
+                                        <td><strong>{{ number_format($produit->pivot->prix_unitaire * $produit->pivot->quantite, 0, ',', ' ') }} FCFA</strong></td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3" class="text-end"><strong>TOTAL:</strong></td>
+                                    <td><h4 class="text-primary mb-0">{{ number_format($commande->total, 0, ',', ' ') }} FCFA</h4></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+                {{-- ADRESSE LIVRAISON --}}
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="mb-0"><i class="fas fa-map-marker-alt"></i> Adresse de livraison</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-0">{{ $commande->adresse_livraison }}</p>
+                    </div>
+                </div>
+
+            </div>
+
+            {{-- SIDEBAR --}}
+            <div class="col-md-4">
+
+                {{-- INFO CLIENT --}}
+                <div class="card mb-4">
+                    <div class="card-header bg-secondary text-white">
+                        <h5 class="mb-0"><i class="fas fa-user"></i> Client</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Nom:</strong> {{ $commande->user->name }}</p>
+                        <p><strong>Email:</strong> {{ $commande->user->email }}</p>
+                        <p class="mb-0"><strong>Date commande:</strong><br>{{ $commande->created_at->format('d/m/Y à H:i') }}</p>
+                    </div>
+                </div>
+
+                {{-- GESTION STATUT --}}
+                <div class="card">
+                    <div class="card-header bg-warning text-dark">
+                        <h5 class="mb-0"><i class="fas fa-edit"></i> Modifier le statut</h5>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ route('commandes.updateStatut', $commande) }}" method="POST">
+                            @csrf
+                            @method('PATCH')
+
+                            <div class="mb-3">
+                                <label>Statut actuel:</label>
+                                <p>
+                                    @php
+                                        $badges = [
+                                            'en_attente' => 'warning',
+                                            'validee' => 'info',
+                                            'expediee' => 'primary',
+                                            'livree' => 'success'
+                                        ];
+                                        $badge = $badges[$commande->statut] ?? 'secondary';
+                                    @endphp
+                                    <span class="badge bg-{{ $badge }} fs-6">
+                                        {{ ucfirst(str_replace('_', ' ', $commande->statut)) }}
+                                    </span>
+                                </p>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="statut">Nouveau statut:</label>
+                                <select name="statut" id="statut" class="form-select" required>
+                                    <option value="en_attente" {{ $commande->statut == 'en_attente' ? 'selected' : '' }}>En attente</option>
+                                    <option value="validee" {{ $commande->statut == 'validee' ? 'selected' : '' }}>Validée</option>
+                                    <option value="expediee" {{ $commande->statut == 'expediee' ? 'selected' : '' }}>Expédiée</option>
+                                    <option value="livree" {{ $commande->statut == 'livree' ? 'selected' : '' }}>Livrée</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-success w-100">
+                                <i class="fas fa-check"></i> Mettre à jour
+                            </button>
+
+                            <a href="{{ route('commandes.index') }}" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Retour
+                            </a>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+@endsection

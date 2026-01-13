@@ -111,13 +111,13 @@
 							</li>
 
 							<li class="nav-item">
-								<a href="" class="nav-link">
+								<a href="{{route('commandes.index')}}" class="nav-link">
 									<i class="nav-icon fas fa-shopping-bag"></i>
 									<p>commandes</p>
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="" class="nav-link">
+								<a href="{{route('users.index')}}" class="nav-link">
 									<i class="nav-icon  fas fa-users"></i>
 									<p>Utilisateurs</p>
 								</a>
