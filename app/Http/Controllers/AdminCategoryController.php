@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -27,13 +28,13 @@ class AdminCategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
         $category = new Category();
         $category->libelle = $request->libelle;
         $category->save();
 
-        return redirect()->route('cat.index')->with('message',"La catégorie a été ajoutée");
+        return redirect()->route('category.index')->with('message','La catégorie a été ajoutée');
     }
 
     /**
@@ -59,7 +60,7 @@ class AdminCategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $category->update($request->all());
-        return redirect()->route('cat.index')->with('message', 'La catégorie a bien été mise à jour');
+        return redirect()->route('category.index')->with('message', 'La catégorie a bien été mise à jour');
     }
 
     /**
@@ -68,6 +69,6 @@ class AdminCategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->route('cat.index')->with('message', 'La catégorie a été supprimée');
+        return redirect()->route('category.index')->with('message', 'La catégorie a été supprimée');
     }
 }
