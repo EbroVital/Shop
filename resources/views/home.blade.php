@@ -80,9 +80,9 @@
 
                             {{-- Panier --}}
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="{{ route('panier.index') }}">
                                     <i class="fas fa-shopping-cart"></i> Panier
-                                    <span class="badge bg-primary">0</span>
+                                    <span class="badge bg-primary">{{ \App\Helpers\Cart::count() }}</span>
                                 </a>
                             </li>
 
@@ -185,7 +185,7 @@
                                     <option value="">📂 Toutes les catégories</option>
                                     @foreach($categories as $cat)
                                         <option value="{{ $cat->id }}" {{ $categorieId == $cat->id ? 'selected' : '' }}>
-                                            {{ $cat->libelle }} 
+                                            {{ $cat->libelle }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -288,15 +288,18 @@
 
                                         {{-- Boutons --}}
                                         <div class="d-grid gap-2">
-                                            <a href="#" class="btn btn-outline-primary">
+                                            <a href="" class="btn btn-outline-primary">
                                                 <i class="fas fa-eye"></i> Voir détails
                                             </a>
                                             @if($produit->stock > 0)
-                                                <button class="btn btn-success">
-                                                    <i class="fas fa-cart-plus"></i> Ajouter au panier
-                                                </button>
+                                                <form action="{{ route('panier.add', $produit) }}" method="POST">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-success w-100">
+                                                        <i class="fas fa-cart-plus"></i> Ajouter au panier
+                                                    </button>
+                                                </form>
                                             @else
-                                                <button class="btn btn-secondary" disabled>
+                                                <button class="btn btn-secondary w-100" disabled>
                                                     <i class="fas fa-ban"></i> Indisponible
                                                 </button>
                                             @endif
