@@ -45,7 +45,7 @@ class PanierController extends Controller
     // retirer du panier
     public function remove(Product $produit){
 
-        Cart::clear($produit->id);
+        Cart::remove($produit->id);
         return back()->with('message', 'Produit retiré du panier');
     }
 

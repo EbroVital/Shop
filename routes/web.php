@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[HomeController::class, 'index'])->name('home');
 Route::get('/produit/{id}', [productController::class, 'show'])->name('showProduct');
+
+// gestion du panier
 Route::get('panier', [PanierController::class, 'index'])->name('panier.index');
 Route::post('panier/add/{produit}', [PanierController::class, 'add'])->name('panier.add');
 Route::patch('panier/update/{produit}', [PanierController::class, 'update'])->name('panier.update');
@@ -25,11 +27,12 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    // gestion du panier
     Route::get('checkout', [PanierController::class, 'checkout'])->name('checkout');
     Route::post('checkout', [PanierController::class, 'processCheckout'])->name('checkout.process');
 

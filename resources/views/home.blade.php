@@ -46,9 +46,83 @@
     <body>
 
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        {{-- <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
             <div class="container">
 
+                <a class="navbar-brand fw-bold text-primary" href="{{ route('home') }}">
+                    <i class="fas fa-shopping-cart"></i> Shop
+                </a>
+
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        @auth
+
+                            <li class="nav-item">
+                                <span class="nav-link">
+                                    <i class="fas fa-user"></i> Bonjour, <strong>{{ Auth::user()->name }}</strong>
+                                </span>
+                            </li>
+
+
+                            @if(Auth::user()->isAdmin())
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">
+                                        <i class="fas fa-cog"></i> Administrateur
+                                    </a>
+                                </li>
+                            @endif
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('panier.index') }}">
+                                    <i class="fas fa-shopping-cart"></i> Panier
+                                    <span class="badge bg-primary">{{ \App\Helpers\Cart::count() }}</span>
+                                </a>
+                            </li>
+
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="fas fa-box"></i> Mes commandes
+                                </a>
+                            </li>
+
+
+                            <li class="nav-item">
+                                <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                                    @csrf
+                                    <button type="submit" class="nav-link btn btn-link text-danger">
+                                        <i class="fas fa-sign-out-alt"></i> Déconnexion
+                                    </button>
+                                </form>
+                            </li>
+                        @else
+
+                            <li class="nav-item">
+                                <a class="btn btn-secondary" href="{{ route('login') }}">
+                                    <i class="fas fa-sign-in-alt"></i> Se connecter
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-primary ms-2" href="{{ route('register') }}">
+                                    <i class="fas fa-user-plus"></i> S'inscrire
+                                </a>
+                            </li>
+                        @endauth
+                    </ul>
+                </div>
+            </div>
+        </nav> --}}
+
+        {{-- NAVBAR --}}
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+            <div class="container">
+                {{-- Logo --}}
                 <a class="navbar-brand fw-bold text-primary" href="{{ route('home') }}">
                     <i class="fas fa-shopping-cart"></i> Shop
                 </a>
@@ -61,6 +135,15 @@
                 {{-- Navigation --}}
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
+
+                        {{-- Lien Panier (VISIBLE PAR TOUS) --}}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('panier.index') }}">
+                                <i class="fas fa-shopping-cart"></i> Panier
+                                <span class="badge bg-danger">{{ \App\Helpers\Cart::count() }}</span>
+                            </a>
+                        </li>
+
                         @auth
                             {{-- Si connecté --}}
                             <li class="nav-item">
@@ -77,14 +160,6 @@
                                     </a>
                                 </li>
                             @endif
-
-                            {{-- Panier --}}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('panier.index') }}">
-                                    <i class="fas fa-shopping-cart"></i> Panier
-                                    <span class="badge bg-primary">{{ \App\Helpers\Cart::count() }}</span>
-                                </a>
-                            </li>
 
                             {{-- Mes commandes --}}
                             <li class="nav-item">

@@ -49,10 +49,8 @@ class Cart
         $panier = Session::get('panier', []);
 
         if (isset($panier[$produitId])) {
-
             unset($panier[$produitId]);
             Session::put('panier', $panier);
-
         }
     }
 
