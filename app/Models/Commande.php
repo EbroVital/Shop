@@ -10,7 +10,7 @@ class Commande extends Model
         'total',
         'user_id',
         'statut',
-        'addresse_livraison'
+        'adresse_livraison'
     ];
 
     // une commande concerne un utilisateur
@@ -22,6 +22,6 @@ class Commande extends Model
     // une commande concerne plusieurs produits
 
     public function products(){
-        return $this->hasMany(Product::class, 'commandes_products')->withPivot('quantite', 'prix_unitaire')->withTimestamps();
+        return $this->belongsToMany(Product::class, 'commandes_products')->withPivot('quantite', 'prix_unitaire')->withTimestamps();
     }
 }

@@ -29,7 +29,7 @@
                 <div class="card bg-warning text-white">
                     <div class="card-body">
                         <h5>En attente</h5>
-                        <h2>{{ $stats['en_attente'] }}</h2>
+                        <h2>{{ $stats['en attente'] }}</h2>
                     </div>
                 </div>
             </div>
@@ -74,7 +74,7 @@
                         <label>Statut</label>
                         <select name="statut" class="form-control">
                             <option value="">Tous les statuts</option>
-                            <option value="en_attente" {{ $statut == 'en_attente' ? 'selected' : '' }}>En attente</option>
+                            <option value="en attente" {{ $statut ==  'en attente' ? 'selected' : '' }}>En attente</option>
                             <option value="validee" {{ $statut == 'validee' ? 'selected' : '' }}>Validée</option>
                             <option value="expediee" {{ $statut == 'expediee' ? 'selected' : '' }}>Expédiée</option>
                             <option value="livree" {{ $statut == 'livree' ? 'selected' : '' }}>Livrée</option>
@@ -121,18 +121,18 @@
                         <tbody>
                             @forelse($commandes as $commande)
                                 <tr>
-                                    <td><strong>#{{ $commande->id }}</strong></td>
+                                    <td><strong>{{ $commande->id }}</strong></td>
                                     <td>
                                         <div>{{ $commande->user->name }}</div>
                                         <small class="text-muted">{{ $commande->user->email }}</small>
                                     </td>
                                     <td>{{ $commande->created_at->format('d/m/Y H:i') }}</td>
-                                    <td><strong>{{ number_format($commande->total, 0, ',', ' ') }} FCFA</strong></td>
+                                    <td><strong class="badge badge-success">{{ number_format($commande->total, 0, ',', ' ') }} FCFA</strong></td>
                                     <td> {{ $commande->adresse_livraison }} </td>
                                     <td>
                                         @php
                                             $badges = [
-                                                'en_attente' => 'warning',
+                                                'en attente' => 'warning',
                                                 'validee' => 'info',
                                                 'expediee' => 'primary',
                                                 'livree' => 'success'

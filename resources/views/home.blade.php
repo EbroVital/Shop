@@ -163,8 +163,8 @@
 
                             {{-- Mes commandes --}}
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <i class="fas fa-box"></i> Mes commandes
+                                <a class="nav-link" href="{{route('user.commande')}}">
+                                    <i class="fas fa-box"></i> Mes commandes 
                                 </a>
                             </li>
 
@@ -363,9 +363,9 @@
 
                                         {{-- Boutons --}}
                                         <div class="d-grid gap-2">
-                                            <a href="" class="btn btn-outline-primary">
+                                            {{-- <a href="" class="btn btn-outline-primary">
                                                 <i class="fas fa-eye"></i> Voir détails
-                                            </a>
+                                            </a> --}}
                                             @if($produit->stock > 0)
                                                 <form action="{{ route('panier.add', $produit) }}" method="POST">
                                                     @csrf

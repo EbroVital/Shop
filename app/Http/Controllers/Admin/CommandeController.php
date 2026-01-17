@@ -41,7 +41,7 @@ class CommandeController extends Controller
         // Statistiques rapides
         $stats = [
             'total' => Commande::count(),
-            'en_attente' => Commande::where('statut', 'en_attente')->count(),
+            'en attente' => Commande::where('statut', 'en attente')->count(),
             'validee' => Commande::where('statut', 'validée')->count(),
             'expediee' => Commande::where('statut', 'expediée')->count(),
             'livree' => Commande::where('statut', 'livrée')->count(),
@@ -64,13 +64,13 @@ class CommandeController extends Controller
     public function updateStatut(Request $request, Commande $commande ) {
 
          $request->validate([
-            'statut' => 'required|in:en_attente,validée,expediée,livrée'
+            'statut' => 'required|in:en attente,validée,expediée,livrée'
         ]);
 
         $commande->statut = $request->statut;
         $commande->save();
 
-        return back()->with('message', 'Statut de la commande mis à jour avec succès !');
+        return redirect()->route('commandes.index')->with('message', 'Statut de la commande mis à jour avec succès !');
 
     }
 }
