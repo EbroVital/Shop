@@ -78,7 +78,7 @@
                     <div class="card-body">
                         <p><strong>Nom:</strong> {{ $commande->user->name }}</p>
                         <p><strong>Email:</strong> {{ $commande->user->email }}</p>
-                        <p class="mb-0"><strong>Date commande:</strong><br>{{ $commande->created_at->format('d/m/Y à H:i') }}</p>
+                        <p class="mb-0"><strong>Date commande :</strong> {{ $commande->created_at->format('d/m/Y à H:i') }}</p>
                     </div>
                 </div>
 
@@ -98,9 +98,9 @@
                                     @php
                                         $badges = [
                                             'en attente' => 'warning',
-                                            'validee' => 'info',
-                                            'expediee' => 'primary',
-                                            'livree' => 'success'
+                                            'validée' => 'info',
+                                            'expediée' => 'primary',
+                                            'livrée' => 'success'
                                         ];
                                         $badge = $badges[$commande->statut] ?? 'secondary';
                                     @endphp
@@ -114,9 +114,9 @@
                                 <label for="statut">Nouveau statut:</label>
                                 <select name="statut" id="statut" class="form-control" required>
                                     <option value="en attente" {{ $commande->statut == 'en attente' ? 'selected' : '' }}>En attente</option>
-                                    <option value="validee" {{ $commande->statut == 'validee' ? 'selected' : '' }}>Validée</option>
-                                    <option value="expediee" {{ $commande->statut == 'expediee' ? 'selected' : '' }}>Expédiée</option>
-                                    <option value="livree" {{ $commande->statut == 'livree' ? 'selected' : '' }}>Livrée</option>
+                                    <option value="validée" {{ $commande->statut == 'validée' ? 'selected' : '' }}>Validée</option>
+                                    <option value="expediée" {{ $commande->statut == 'expediée' ? 'selected' : '' }}>Expédiée</option>
+                                    <option value="livrée" {{ $commande->statut == 'livrée' ? 'selected' : '' }}>Livrée</option>
                                 </select>
                             </div>
 

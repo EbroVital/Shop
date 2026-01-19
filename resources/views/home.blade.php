@@ -155,18 +155,20 @@
                             {{-- Admin --}}
                             @if(Auth::user()->isAdmin())
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">
-                                        <i class="fas fa-cog"></i> Administrateur
+                                    <a class="nav-link" href="{{route('dashboard')}}">
+                                        <i class="fas fa-cog"></i> Tableau de bord
                                     </a>
                                 </li>
                             @endif
 
-                            {{-- Mes commandes --}}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('user.commande')}}">
-                                    <i class="fas fa-box"></i> Mes commandes 
-                                </a>
-                            </li>
+                            @if ( Auth::user()->role === "user" )
+                                {{-- Mes commandes --}}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{route('user.commande')}}">
+                                        <i class="fas fa-box"></i> Mes commandes
+                                    </a>
+                                </li>
+                            @endif
 
                             {{-- Déconnexion --}}
                             <li class="nav-item">

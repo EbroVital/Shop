@@ -55,7 +55,7 @@
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link p-0 pr-3" data-toggle="dropdown" href="#">
-							<img src="img/avatar5.png" class='img-circle elevation-2' width="40" height="40" alt="">
+							<img src="{{ asset('img/avatar5.png')}}" class='img-circle elevation-2' width="40" height="40" alt="">
 						</a>
 						<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-3">
 							<h4 class="h4 mb-0"><strong>{{ Auth::user()->name }}</strong></h4>
@@ -81,7 +81,7 @@
 			<aside class="main-sidebar sidebar-dark-primary elevation-4">
 				<!-- Brand Logo -->
 				<a href="{{route('dashboard')}}" class="brand-link">
-					<img src="img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+					<img src="{{asset('img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
 					<span class="brand-text font-weight-light">SHOP</span>
 				</a>
 				<!-- Sidebar -->
@@ -122,6 +122,12 @@
 									<p>Utilisateurs</p>
 								</a>
 							</li>
+                            <li class="nav-item">
+								<a href="{{route('home')}}" class="nav-link">
+                                    <i class="fas fa-arrow-circle-left"></i>
+									<p> Retour à l'accueil </p>
+								</a>
+							</li>
 						</ul>
 					</nav>
 					<!-- /.sidebar-menu -->
@@ -137,9 +143,6 @@
 							<div class="col-sm-6">
 								<h1>Tableau de bord</h1>
 							</div>
-							<div class="col-sm-6">
-
-							</div>
 						</div>
 					</div>
 					<!-- /.container-fluid -->
@@ -152,39 +155,117 @@
 							<div class="col-lg-4 col-6">
 								<div class="small-box card">
 									<div class="inner">
-										<h3>150</h3>
-										<p>Total Orders</p>
-									</div>
-									<div class="icon">
-										<i class="ion ion-bag"></i>
-									</div>
-									<a href="#" class="small-box-footer text-dark">More info <i class="fas fa-arrow-circle-right"></i></a>
-								</div>
-							</div>
-
-							<div class="col-lg-4 col-6">
-								<div class="small-box card">
-									<div class="inner">
-										<h3>50</h3>
-										<p>Total Customers</p>
-									</div>
-									<div class="icon">
-										<i class="ion ion-stats-bars"></i>
-									</div>
-									<a href="#" class="small-box-footer text-dark">More info <i class="fas fa-arrow-circle-right"></i></a>
-								</div>
-							</div>
-
-							<div class="col-lg-4 col-6">
-								<div class="small-box card">
-									<div class="inner">
-										<h3>$1000</h3>
-										<p>Total Sale</p>
+										<h3> {{ $commandes }} </h3>
+										<p>Nombres de commandes</p>
 									</div>
 									<div class="icon">
 										<i class="ion ion-person-add"></i>
 									</div>
-									<a href="javascript:void(0);" class="small-box-footer">&nbsp;</a>
+									<a href="" class="small-box-footer">&nbsp;</a>
+								</div>
+							</div>
+
+							<div class="col-lg-4 col-6">
+								<div class="small-box card">
+									<div class="inner">
+										<h3> {{ $users }} </h3>
+										<p>Nombres d'utilisateurs</p>
+									</div>
+									<div class="icon">
+										<i class="ion ion-person-add"></i>
+									</div>
+									<a href="" class="small-box-footer">&nbsp;</a>
+								</div>
+							</div>
+
+							<div class="col-lg-4 col-6">
+								<div class="small-box card">
+									<div class="inner">
+										<h3> {{ number_format($total, 0, ',', ' ') }} FCFA</h3>
+										<p>Prix total des commandes</p>
+									</div>
+									<div class="icon">
+										<i class="ion ion-person-add"></i>
+									</div>
+									<a href="" class="small-box-footer">&nbsp;</a>
+								</div>
+							</div>
+
+                            <div class="col-lg-4 col-6">
+								<div class="small-box card">
+									<div class="inner">
+										<h3> {{ $categorie }} </h3>
+										<p>Nombre de catégories</p>
+									</div>
+									<div class="icon">
+										<i class="ion ion-person-add"></i>
+									</div>
+									<a href="" class="small-box-footer">&nbsp;</a>
+								</div>
+							</div>
+
+                            <div class="col-lg-4 col-6">
+								<div class="small-box card">
+									<div class="inner">
+										<h3> {{ $stats['en attente'] }} </h3>
+										<p>Nombre de commandes en attente</p>
+									</div>
+									<div class="icon">
+										<i class="ion ion-person-add"></i>
+									</div>
+									<a href="" class="small-box-footer">&nbsp;</a>
+								</div>
+							</div>
+
+                            <div class="col-lg-4 col-6">
+								<div class="small-box card">
+									<div class="inner">
+										<h3> {{ $stats['validee'] }} </h3>
+										<p>Nombre de commandes validées</p>
+									</div>
+									<div class="icon">
+										<i class="ion ion-person-add"></i>
+									</div>
+									<a href="" class="small-box-footer">&nbsp;</a>
+								</div>
+							</div>
+
+                            <div class="col-lg-4 col-6">
+								<div class="small-box card">
+									<div class="inner">
+										<h3> {{ $stats['expediee'] }} </h3>
+										<p>Nombre de commandes expediées</p>
+									</div>
+									<div class="icon">
+										<i class="ion ion-person-add"></i>
+									</div>
+									<a href="" class="small-box-footer">&nbsp;</a>
+								</div>
+							</div>
+
+                            <div class="col-lg-4 col-6">
+								<div class="small-box card">
+									<div class="inner">
+										<h3> {{ $stats['livree'] }} </h3>
+										<p>Nombre de commandes livrées </p>
+									</div>
+									<div class="icon">
+										<i class="ion ion-person-add"></i>
+									</div>
+									<a href="" class="small-box-footer">&nbsp;</a>
+								</div>
+							</div>
+
+                            <div class="col-lg-4 col-6">
+								<div class="small-box card">
+									<div class="inner">
+										<h3> {{ $produits }} </h3>
+										<p>Nombre de produits</p>
+									</div>
+									<div class="icon">
+										<i class="ion ion-person-add"></i>
+									</div>
+									<a href="" class="small-box-footer">&nbsp;</a>
 								</div>
 							</div>
 						</div>

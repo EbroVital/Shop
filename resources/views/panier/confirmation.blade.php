@@ -108,7 +108,7 @@
                         <ol class="mb-0">
                             <li class="mb-2">Nous allons vérifier votre commande</li>
                             <li class="mb-2">Vous recevrez une confirmation par email</li>
-                            <li class="mb-2">Votre commande sera préparée et expédiée</li>
+                            <li class="mb-2">Votre commande sera préparée et envoyée</li>
                             <li>Livraison sous 2-5 jours ouvrés</li>
                         </ol>
                     </div>

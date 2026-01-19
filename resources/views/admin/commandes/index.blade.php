@@ -42,6 +42,14 @@
                 </div>
             </div>
             <div class="col-md-3">
+                <div class="card bg-secondary text-white">
+                    <div class="card-body">
+                        <h5>Expediées</h5>
+                        <h2>{{ $stats['expediee'] }}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
                 <div class="card bg-success text-white">
                     <div class="card-body">
                         <h5>Livrées</h5>
@@ -109,33 +117,33 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>N°</th>
-                                <th>Client</th>
-                                <th>Date</th>
-                                <th>Total</th>
-                                <th>Adresse de livraison</th>
-                                <th>Statut</th>
-                                <th>Actions</th>
+                                <th class="text-center">N°</th>
+                                <th class="text-center">Client</th>
+                                <th class="text-center">Date</th>
+                                <th class="text-center">Total</th>
+                                <th class="text-center">Adresse de livraison</th>
+                                <th class="text-center">Statut</th>
+                                <th class="text-center">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse($commandes as $commande)
                                 <tr>
-                                    <td><strong>{{ $commande->id }}</strong></td>
-                                    <td>
+                                    <td class="text-center"><strong>{{ $commande->id }}</strong></td>
+                                    <td class="text-center">
                                         <div>{{ $commande->user->name }}</div>
                                         <small class="text-muted">{{ $commande->user->email }}</small>
                                     </td>
-                                    <td>{{ $commande->created_at->format('d/m/Y H:i') }}</td>
-                                    <td><strong class="badge badge-success">{{ number_format($commande->total, 0, ',', ' ') }} FCFA</strong></td>
-                                    <td> {{ $commande->adresse_livraison }} </td>
-                                    <td>
+                                    <td class="text-center">{{ $commande->created_at->format('d/m/Y à H:i') }}</td>
+                                    <td class="text-center"><strong class="badge badge-success">{{ number_format($commande->total, 0, ',', ' ') }} FCFA</strong></td>
+                                    <td class="text-center"> {{ $commande->adresse_livraison }} </td>
+                                    <td class="text-center">
                                         @php
                                             $badges = [
                                                 'en attente' => 'warning',
-                                                'validee' => 'info',
-                                                'expediee' => 'primary',
-                                                'livree' => 'success'
+                                                'validée' => 'info',
+                                                'expediée' => 'primary',
+                                                'livrée' => 'success'
                                             ];
                                             $badge = $badges[$commande->statut] ?? 'secondary';
                                         @endphp
@@ -143,7 +151,7 @@
                                             {{ ucfirst(str_replace('_', ' ', $commande->statut)) }}
                                         </span>
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         <a href="{{ route('commandes.show', $commande) }}"
                                         class="btn btn-sm btn-info">
                                             <i class="fas fa-eye"></i> Voir

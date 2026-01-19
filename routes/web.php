@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\CommandeController;
+use App\Http\Controllers\Admin\dashboardController;
 use App\Http\Controllers\Admin\userController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PanierController;
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 // Route accessible à tous
 
 Route::get('/',[HomeController::class, 'index'])->name('home');
-Route::get('/produit/{id}', [productController::class, 'show'])->name('showProduct');
+// Route::get('/produit/{id}', [productController::class, 'show'])->name('showProduct');
 
 // gestion du panier
 Route::get('panier', [PanierController::class, 'index'])->name('panier.index');
@@ -23,9 +24,6 @@ Route::post('panier/add/{produit}', [PanierController::class, 'add'])->name('pan
 Route::patch('panier/update/{produit}', [PanierController::class, 'update'])->name('panier.update');
 Route::delete('panier/remove/{produit}', [PanierController::class, 'remove'])->name('panier.remove');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
 
@@ -45,6 +43,9 @@ Route::middleware('auth')->group(function () {
 
 
 Route::middleware(['auth', 'admin'])->group(function () {
+
+    // tableau de bord de l'administrateur
+    Route::get('/dashboard', [dashboardController::class, 'index'])->name('dashboard');
 
     // route CRUD des produits par l'administrateur
     Route::resource('produits', AdminProductController::class);

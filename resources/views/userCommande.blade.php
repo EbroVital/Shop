@@ -122,7 +122,7 @@
                 {{-- BOUCLE SUR LES COMMANDES --}}
                 @foreach($commandes as $commande)
                     <div class="card mb-4">
-                        <div class="card-header bg-primary text-white">
+                        <div class="card-header bg-secondary text-white">
                             <div class="d-flex justify-content-between align-items-center">
                                 <h5 class="mb-0">
                                     Commande #{{ $commande->id }}
@@ -131,9 +131,9 @@
                                     @php
                                         $badges = [
                                             'en attente' => 'warning',
-                                            'validee' => 'info',
-                                            'expediee' => 'primary',
-                                            'livree' => 'success'
+                                            'validée' => 'info',
+                                            'expediée' => 'primary',
+                                            'livrée' => 'success'
                                         ];
                                         $badge = $badges[$commande->statut] ?? 'secondary';
                                     @endphp
