@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Cart;
 use App\Http\Requests\checkoutRequest;
+use App\Mail\Order;
 use App\Models\Commande;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class PanierController extends Controller
 {
@@ -107,7 +111,7 @@ class PanierController extends Controller
 
         // Créer la commande
         $commande = Commande::create([
-            'user_id' => auth()->id(),
+            'user_id' => Auth::id(),
             'total' => $total,
             'statut' => 'en attente',
             'adresse_livraison' => $adresseComplete
@@ -131,6 +135,9 @@ class PanierController extends Controller
         // Valider la transaction
         DB::commit();
 
+        // Envoi de l'email à l'utilisateur
+        Mail::to(Auth::user()->email)->send(new Order($commande));
+
         // Vider le panier
         Cart::clear();
 
@@ -150,7 +157,7 @@ class PanierController extends Controller
     public function confirmation(Commande $commande){
 
         // verifier si c'est bien la commande de l'utilisateur connecté
-        if( $commande->user_id !== auth()->id() ){
+        if( $commande->user_id !== Auth::id() ){
             abort(403);
         }
 

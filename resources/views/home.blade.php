@@ -148,7 +148,9 @@
                             {{-- Si connecté --}}
                             <li class="nav-item">
                                 <span class="nav-link">
-                                    <i class="fas fa-user"></i> Bonjour, <strong>{{ Auth::user()->name }}</strong>
+                                    <a href="{{route('profile.edit')}}" class="text-black">
+                                        <i class="fas fa-user"></i> Bonjour, <strong>{{ Auth::user()->name }}</strong>
+                                    </a>
                                 </span>
                             </li>
 

@@ -7,13 +7,19 @@ use App\Http\Controllers\Admin\dashboardController;
 use App\Http\Controllers\Admin\userController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PanierController;
-use App\Http\Controllers\productController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserCommandeController;
 use Illuminate\Support\Facades\Route;
 
 
 // Route accessible à tous
+
+// Route pour tester la vue de l'email
+Route::get('/test-email', function () {
+    $commande = \App\Models\Commande::with('produits', 'user')->first();
+
+    return new \App\Mail\Order($commande);
+});
 
 Route::get('/',[HomeController::class, 'index'])->name('home');
 // Route::get('/produit/{id}', [productController::class, 'show'])->name('showProduct');
@@ -37,7 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::get('commande/{commande}/confirmation', [PanierController::class, 'confirmation'])->name('commande.confirmation');
 
     // historique de commandes des utilisateurs connectés
-    Route::get('/Commandes', [UserCommandeController::class, 'index'])->name('user.commande');
+    Route::get('/mes-commandes', [UserCommandeController::class, 'index'])->name('user.commande');
 
 });
 
