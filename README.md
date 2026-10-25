@@ -466,6 +466,21 @@ DELETE /categories/{id}   Supprimer catégorie
 
 ---
 
+## Capture d'ecran
+Accueil
+<img width="1366" height="768" alt="accueil" src="https://github.com/user-attachments/assets/814094a0-0f96-4202-a863-21d5be4a782a" />
+<img width="1366" height="768" alt="accueil(1)" src="https://github.com/user-attachments/assets/60add3b9-ae67-40c6-9f27-a885d7b71d12" />
+Dashboard Admin
+<img width="1366" height="768" alt="admin" src="https://github.com/user-attachments/assets/3dcea01a-45f9-45cd-b61d-930322e4b8bc" />
+Panier d'un utilisateur
+<img width="1366" height="768" alt="PANIER" src="https://github.com/user-attachments/assets/344ef3a0-9407-4dcc-a97e-a5463ebc5e3d" />
+Validation d'une commande
+<img width="1366" height="768" alt="commande" src="https://github.com/user-attachments/assets/7af163e0-d43c-4758-9f56-70032e94609d" />
+<img width="1366" height="768" alt="commande(1)" src="https://github.com/user-attachments/assets/3e25f53f-8508-47f3-9c67-bdd0508c3504" />
+
+
+
+
 ##  Améliorations futures
 
 ### Fonctionnalités planifiées
