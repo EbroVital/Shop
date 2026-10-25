@@ -1,6 +1,6 @@
 # 🛒 Plateforme E-commerce
 
-[![Laravel](https://img.shields.io/badge/Laravel-11-red.svg)](https://laravel.com)
+[![Laravel](https://img.shields.io/badge/Laravel-12-red.svg)](https://laravel.com)
 [![PHP](https://img.shields.io/badge/PHP-8.2-blue.svg)](https://php.net)
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-purple.svg)](https://getbootstrap.com)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
@@ -9,9 +9,9 @@
 
 ---
 
-## ✨ Fonctionnalités
+##  Fonctionnalités
 
-### 🛍️ Côté Client
+###  Côté Client
 
 - **Catalogue produits**
   - Affichage des produits avec images, prix et stock
@@ -37,7 +37,7 @@
   - Profil utilisateur
   - Gestion des informations personnelles
 
-### 🔧 Côté Administrateur
+###  Côté Administrateur
 
 - **Gestion des catégories**
   - CRUD complet (Créer, Lire, Modifier, Supprimer)
@@ -57,7 +57,7 @@
   - Détails complets (produits, quantités, client, adresse)
   - Statistiques en temps réel
 
-### 🔔 Système de notifications
+###  Système de notifications
 
 - Email de confirmation de commande
 - Détails complets de la commande dans l'email
@@ -65,7 +65,7 @@
 
 ---
 
-## 🛠️ Technologies Utilisées
+##  Technologies Utilisées
 
 ### Backend
 - **Laravel 12** - Framework PHP
@@ -85,7 +85,7 @@
 
 ---
 
-## 📋 Prérequis
+##  Prérequis
 
 - PHP >= 8.2
 - Composer
@@ -94,7 +94,7 @@
 
 ---
 
-## 🚀 Installation
+##  Installation
 
 ### 1. Cloner le projet
 
@@ -176,7 +176,7 @@ Accéder à l'application : **http://localhost:8000**
 
 ---
 
-## 📧 Configuration des emails
+##  Configuration des emails
 
 ### Option 1 : Log (Développement)
 
@@ -223,7 +223,7 @@ MAIL_FROM_NAME= "votre_app_name"
 
 ---
 
-## 👥 Comptes de test
+##  Comptes de test
 
 Après avoir exécuté `php artisan db:seed` :
 
@@ -237,7 +237,7 @@ Après avoir exécuté `php artisan db:seed` :
 
 ---
 
-## 📁 Structure du projet
+##  Structure du projet
 
 ```
 Shop/
@@ -297,7 +297,7 @@ Shop/
 
 ---
 
-## 🗄️ Schéma de base de données
+##  Schéma de base de données
 
 ### Relations
 
@@ -329,7 +329,7 @@ categories (1) ──────> (N) produits
 
 ---
 
-## 🎨 Fonctionnalités techniques
+##  Fonctionnalités techniques
 
 ### Helper Cart (Gestion du panier)
 
@@ -402,7 +402,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
 ---
 
-## 🧪 Tests
+##  Tests
 
 Pour tester l'application :
 
@@ -427,7 +427,7 @@ Affiche l'email dans le navigateur sans l'envoyer.
 
 ---
 
-## 📝 Routes principales
+##  Routes principales
 
 ### Public
 
@@ -466,7 +466,7 @@ DELETE /categories/{id}   Supprimer catégorie
 
 ---
 
-## 🚧 Améliorations futures
+##  Améliorations futures
 
 ### Fonctionnalités planifiées
 
@@ -495,7 +495,7 @@ DELETE /categories/{id}   Supprimer catégorie
 
 ---
 
-## 🐛 Problèmes connus
+##  Problèmes connus
 
 ### Email ne part pas (Laragon + SSL)
 
@@ -513,7 +513,7 @@ DELETE /categories/{id}   Supprimer catégorie
 
 ---
 
-## 🤝 Contribution
+##  Contribution
 
 Les contributions sont les bienvenues ! Pour contribuer :
 
@@ -525,13 +525,13 @@ Les contributions sont les bienvenues ! Pour contribuer :
 
 ---
 
-## 📄 Licence
+##  Licence
 
 Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
 
 ---
 
-## 👨‍💻 Auteur
+##  Auteur
 
 **Ebro Vital**
 
@@ -540,7 +540,7 @@ Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de 
 
 ---
 
-## 🙏 Remerciements
+##  Remerciements
 
 - [Laravel](https://laravel.com) - Framework PHP
 - [Bootstrap](https://getbootstrap.com) - Framework CSS
@@ -549,7 +549,7 @@ Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de 
 
 ---
 
-## 📚 Ressources utiles
+##  Ressources utiles
 
 - [Documentation Laravel](https://laravel.com/docs)
 - [Documentation Eloquent Relationships](https://laravel.com/docs/eloquent-relationships)

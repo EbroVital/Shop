@@ -143,7 +143,7 @@
                                     </div>
 
                                     {{-- Nom --}}
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <h5 class="mb-1">{{ $item['nom'] }}</h5>
                                         <p class="text-muted mb-0">
                                             {{ number_format($item['prix'], 0, ',', ' ') }} FCFA
@@ -151,7 +151,7 @@
                                     </div>
 
                                     {{-- Quantité --}}
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <form action="{{ route('panier.update', $id) }}" method="POST" class="d-flex align-items-center gap-2">
                                             @csrf
                                             @method('PATCH')
@@ -167,14 +167,14 @@
                                     </div>
 
                                     {{-- Sous-total --}}
-                                    <div class="col-md-2">
+                                    {{-- <div class="col-md-2">
                                         <strong class="text-primary">
                                             {{ number_format($item['prix'] * $item['quantite'], 0, ',', ' ') }} FCFA
                                         </strong>
-                                    </div>
+                                    </div> --}}
 
                                     {{-- Bouton supprimer --}}
-                                    <div class="col-md-1">
+                                    <div class="col-md-3 text-center">
                                         <form action="{{ route('panier.remove', $id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
